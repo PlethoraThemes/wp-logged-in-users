@@ -19,7 +19,7 @@ class PlethoraLoggedInUsers {
 	function __construct(){
 
 		add_action( 'admin_bar_menu', array( $this, 'plethora_admin_bar_add' ), 10    );
-		add_action( 'wp_login', 	  array( $this, 'plethora_wp_login' ), 	    10, 2 );
+		add_action( 'wp_login', 	  array( $this, 'plethora_wp_login' ), 	  10, 2   );
 		add_action( 'wp_logout', 	  array( $this, 'plethora_wp_logout' ) 			  );
 
 	}
@@ -50,7 +50,7 @@ class PlethoraLoggedInUsers {
 
 		$presence  = get_option( 'plethora_users_online' );
 		$user_list = $this->plethora_helpers_getusers();
-		$title	   = '';	
+		$title	   = "";	
 
 		foreach ( $user_list as $user  ) {
 
@@ -75,7 +75,7 @@ class PlethoraLoggedInUsers {
 
 	}
 
-	function plethora_wp_login( $user_login, $user ){
+	public function plethora_wp_login( $user_login, $user ){
 
 		global $current_user;
 	    get_currentuserinfo();
@@ -96,10 +96,9 @@ class PlethoraLoggedInUsers {
 
 	}
 
-	function plethora_wp_logout(){
+	public function plethora_wp_logout(){
 
 		$user_login = wp_get_current_user()->user_login;
-
 		$users_online = get_option( 'plethora_users_online' );
 
 		if ( is_array( $users_online ) && 1 !== empty( $users_online) ){
@@ -118,8 +117,4 @@ class PlethoraLoggedInUsers {
 
 }
 
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
-
-	add_action( 'plugins_loaded', array( 'PlethoraLoggedInUsers', 'get_instance' ) );
-
-}
+add_action( 'plugins_loaded', array( 'PlethoraLoggedInUsers', 'get_instance' ) );
