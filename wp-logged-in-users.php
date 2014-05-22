@@ -19,8 +19,8 @@ class PlethoraLoggedInUsers {
 	function __construct(){
 
 		add_action( 'admin_bar_menu', array( $this, 'plethora_admin_bar_add' ), 10    );
-		add_action( 'wp_login', 	  array( $this, 'plethora_wp_login', 	  10, 2 ) );
-		add_action( 'wp_logout', 	  array( $this, 'plethora_wp_logout' 	        ) );
+		add_action( 'wp_login', 	  array( $this, 'plethora_wp_login' ), 	    10, 2 );
+		add_action( 'wp_logout', 	  array( $this, 'plethora_wp_logout' ) 			  );
 
 	}
 
